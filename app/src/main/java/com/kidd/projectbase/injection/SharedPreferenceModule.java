@@ -14,7 +14,7 @@ import dagger.Provides;
 public class SharedPreferenceModule {
     @Provides
     @Singleton
-    public RxPreferenceHelper providePreferencesHelper(Context context) {
-        return PreferencesHelper.getInstance(context);
+    public RxPreferenceHelper providePreferencesHelper(PreferencesHelper preferencesHelper) {
+        return preferencesHelper;
     }
 }

@@ -17,6 +17,7 @@ public final class AppModule {
         mApp = app;
     }
 
+    @ApplicationContext
     @Provides
     public Context provideAppContext() {
         return mApp;

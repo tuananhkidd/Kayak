@@ -5,6 +5,7 @@ import android.content.Context;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.kidd.projectbase.BuildConfig;
+import com.kidd.projectbase.network.NetworkCheckerInterceptor;
 import com.kidd.projectbase.network.request.Apis;
 import com.kidd.projectbase.utils.Define;
 
@@ -27,11 +28,14 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ApiModule {
     @Provides
     @Singleton
-    Apis provideApiService(OkHttpClient client, GsonConverterFactory gson, RxJava2CallAdapterFactory rxAdapter) {
+    Apis provideApiService(OkHttpClient client, RxJava2CallAdapterFactory rxAdapter) {
+        Gson gson = new GsonBuilder()
+                .setLenient()
+                .create();
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BuildConfig.API_BASE_URL)
                 .client(client)
-                .addConverterFactory(gson)
+                .addConverterFactory(GsonConverterFactory.create(gson))
                 .addCallAdapterFactory(rxAdapter)
                 .build();
 
@@ -39,22 +43,21 @@ public class ApiModule {
     }
 
     @Provides
-    OkHttpClient provideHttpClient(Cache cache,  HttpLoggingInterceptor logging) {
+    OkHttpClient provideHttpClient(@ApplicationContext Context context) {
         HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
         loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
 
-//        NetworkCheckerInterceptor networkCheckerInterceptor = new NetworkCheckerInterceptor(context);
+        NetworkCheckerInterceptor networkCheckerInterceptor = new NetworkCheckerInterceptor(context);
 
         return new OkHttpClient.Builder()
                 .addInterceptor(chain -> {
                     Request request = chain.request()
                             .newBuilder()
-                            .addHeader("CLIENTTYPE","android")
                             .build();
                     return chain.proceed(request);
                 })
                 .addInterceptor(loggingInterceptor)
-//                .addInterceptor(networkCheckerInterceptor)
+                .addInterceptor(networkCheckerInterceptor)
 //                .addInterceptor(new TokenInterceptor(messageRepository))
                 .connectTimeout(Define.DEFAULT_TIMEOUT, TimeUnit.SECONDS)
                 .readTimeout(Define.DEFAULT_TIMEOUT, TimeUnit.SECONDS)
@@ -64,9 +67,9 @@ public class ApiModule {
 
     @Provides
     HttpLoggingInterceptor provideInterceptor() {
-       HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
-       httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-       return httpLoggingInterceptor;
+        HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
+        httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+        return httpLoggingInterceptor;
     }
 
 //    @Provides

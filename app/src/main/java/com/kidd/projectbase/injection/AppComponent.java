@@ -14,6 +14,7 @@ import dagger.Component;
 @Singleton
 @Component(modules = {AppModule.class, ApiModule.class, RxModule.class, SharedPreferenceModule.class})
 public interface AppComponent {
+    @ApplicationContext
     Context getAppContext();
 
     App getApp();

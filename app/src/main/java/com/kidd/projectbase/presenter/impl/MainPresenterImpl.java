@@ -1,6 +1,7 @@
 package com.kidd.projectbase.presenter.impl;
 
 import android.support.annotation.NonNull;
+import android.util.Log;
 
 import com.kidd.projectbase.presenter.MainPresenter;
 import com.kidd.projectbase.view.MainView;
@@ -26,7 +27,27 @@ public final class MainPresenterImpl extends BasePresenterImpl<MainView> impleme
     public void onStart(boolean viewCreated) {
         super.onStart(viewCreated);
 
-        // Your code here. Your view is available using mView and will not be null until next onStop()
+        compositeDisposable.add(mInteractor.getListCar()
+                .doOnSubscribe(
+                        disposable -> {
+                            if (mView != null) {
+                                mView.showLoading();
+                            }
+                        }
+                )
+                .doFinally(() -> {
+                    if (mView != null) {
+                        mView.hiddenLoading();
+                    }
+                })
+                .subscribe(
+                        response -> {
+                            Log.v("ahihi", response.getData().toString());
+                        },
+                        throwable -> {
+                            throwable.printStackTrace();
+                        }
+                ));
     }
 
     @Override

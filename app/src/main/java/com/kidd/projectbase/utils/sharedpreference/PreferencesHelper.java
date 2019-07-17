@@ -3,6 +3,7 @@ package com.kidd.projectbase.utils.sharedpreference;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.kidd.projectbase.injection.ApplicationContext;
 import com.kidd.projectbase.utils.Constants;
 
 import javax.inject.Inject;
@@ -20,7 +21,7 @@ public class PreferencesHelper implements RxPreferenceHelper {
     }
 
     @Inject
-    PreferencesHelper(Context context) {
+    PreferencesHelper(@ApplicationContext Context context) {
         mPrefs = context.getSharedPreferences(Constants.PREF_NAME, Context.MODE_PRIVATE);
     }
 

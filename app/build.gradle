@@ -30,7 +30,7 @@ android {
         buildTypes {
             debug { //FIXME Change debug config
 //                signingConfig signingConfigs.debug
-                buildConfigField "String", "API_BASE_URL", "\"http://rikkei.com/\"" // FIXME
+                buildConfigField "String", "API_BASE_URL", '"http://api.timdatxe.com/"'
             }
 
             release { //FIXME Change release config
