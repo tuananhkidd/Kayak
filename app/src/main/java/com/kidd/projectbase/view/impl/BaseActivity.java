@@ -146,7 +146,6 @@ public abstract class BaseActivity<P extends BasePresenter<V>, V extends BaseVie
      */
     protected abstract void setupComponent(@NonNull AppComponent appComponent);
 
-    //region => TetViet base area
 
     protected abstract int getRootViewId();
 
@@ -162,7 +161,6 @@ public abstract class BaseActivity<P extends BasePresenter<V>, V extends BaseVie
             super.onBackPressed();
         }
     }
-    //endregion
 
     @Override
     public void initView() {

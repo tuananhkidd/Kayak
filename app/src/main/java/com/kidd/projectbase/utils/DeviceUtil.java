@@ -138,9 +138,6 @@ public class DeviceUtil {
 
     public static void openPlayStore(Context context) {
         String appPackageName = context.getPackageName();
-        if (BuildConfig.DEBUG) {
-            appPackageName = "com.aic.tet9999";
-        }
         try {
             context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
         } catch (android.content.ActivityNotFoundException anfe) {
