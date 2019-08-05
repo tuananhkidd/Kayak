@@ -36,6 +36,7 @@ android {
 
             release {
 //                signingConfig signingConfigs.release
+                useProguard true
                 buildConfigField "String", "API_BASE_URL", ""
                 minifyEnabled false
                 proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
@@ -43,6 +44,20 @@ android {
 
         }
     }
+
+//    flavorDimensions "version"
+//    productFlavors {
+//        develop {
+//            dimension "version"
+//            applicationId "com.develop.beetech"
+//            resValue "string", "app_name", "Develop"
+//        }
+//        beetech {
+//            dimension "version"
+//            applicationId "com.beetech"
+//            resValue "string", "app_name", "Release"
+//        }
+//    }
 
     packagingOptions {
         exclude 'META-INF/rxjava.properties'
@@ -74,7 +89,7 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.5'
     implementation 'com.squareup.retrofit2:retrofit:2.4.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
-    implementation 'com.squareup.okhttp3:logging-interceptor:3.10.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.12.1'
     // Rx adapter for retrofit
     implementation 'com.squareup.retrofit2:adapter-rxjava2:2.4.0'
 
