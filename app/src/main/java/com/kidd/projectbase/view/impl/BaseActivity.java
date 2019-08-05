@@ -232,4 +232,14 @@ public abstract class BaseActivity<P extends BasePresenter<V>, V extends BaseVie
         BaseFragment.lastClickTime = now;
         return false;
     }
+
+    @Override
+    public void showLayoutRetry() {
+
+    }
+
+    @Override
+    public void hideLayoutRetry() {
+
+    }
 }

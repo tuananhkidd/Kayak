@@ -26,7 +26,11 @@ public final class MainPresenterImpl extends BasePresenterImpl<MainView> impleme
     @Override
     public void onStart(boolean viewCreated) {
         super.onStart(viewCreated);
+        testApi();
+    }
 
+    @Override
+    public void testApi() {
         compositeDisposable.add(mInteractor.getListCar()
                 .doOnSubscribe(
                         disposable -> {
@@ -42,9 +46,19 @@ public final class MainPresenterImpl extends BasePresenterImpl<MainView> impleme
                 })
                 .subscribe(
                         response -> {
-                            Log.v("ahihi", response.getData().toString());
+                            if (response.getStatus() == 200) {
+                                Log.v("ahihi", response.getData().toString());
+                            } else {
+                                if (mView != null) {
+                                    mView.showLayoutRetry();
+                                }
+
+                            }
                         },
                         throwable -> {
+                            if (mView != null) {
+                                mView.showLayoutRetry();
+                            }
                             throwable.printStackTrace();
                         }
                 ));

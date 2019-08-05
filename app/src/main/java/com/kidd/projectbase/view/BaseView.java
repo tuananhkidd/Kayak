@@ -17,4 +17,7 @@ public interface BaseView {
 
     void hiddenLoading();
 
+    void showLayoutRetry();
+
+    void hideLayoutRetry();
 }

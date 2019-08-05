@@ -323,4 +323,20 @@ public abstract class BaseFragment<P extends BasePresenter<V>, V extends BaseVie
 //            mAnalyticsUtils.trackEvent(event);
 //    }
 
+
+    @Override
+    public void showLayoutRetry() {
+        if (getActivity() != null && getActivity() instanceof MainActivity) {
+            ((MainActivity) getActivity()).showLayoutRetry();
+        }
+    }
+
+    @Override
+    public void hideLayoutRetry() {
+        if (getActivity() != null && getActivity() instanceof MainActivity) {
+            ((MainActivity) getActivity()).hideLayoutRetry();
+        }
+    }
+
+    abstract void onRetry();
 }

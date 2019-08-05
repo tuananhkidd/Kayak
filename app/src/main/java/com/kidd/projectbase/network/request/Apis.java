@@ -14,7 +14,7 @@ import retrofit2.http.POST;
 
 public interface Apis {
 
-    @GET("v1/cars")
+    @GET("v1/cars1")
     Single<BaseResponse<CarResponse>> getCar();
 
 }

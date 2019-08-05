@@ -8,9 +8,12 @@ import com.kidd.projectbase.injection.DaggerTest2ViewComponent;
 import com.kidd.projectbase.injection.Test2ViewModule;
 import com.kidd.projectbase.presenter.Test2Presenter;
 import com.kidd.projectbase.presenter.loader.PresenterFactory;
+import com.kidd.projectbase.utils.ToastUtil;
 import com.kidd.projectbase.view.Test2View;
 
 import javax.inject.Inject;
+
+import butterknife.OnClick;
 
 public final class Test2Fragment extends BaseFragment<Test2Presenter, Test2View> implements Test2View {
     @Inject
@@ -22,6 +25,11 @@ public final class Test2Fragment extends BaseFragment<Test2Presenter, Test2View>
         // Required empty public constructor
     }
 
+    @Override
+    public void initView() {
+        super.initView();
+        showLayoutRetry();
+    }
 
     @Override
     protected void setupComponent(@NonNull AppComponent parentComponent) {
@@ -47,5 +55,16 @@ public final class Test2Fragment extends BaseFragment<Test2Presenter, Test2View>
     @Override
     protected PresenterFactory<Test2Presenter> getPresenterFactory() {
         return mPresenterFactory;
+    }
+
+    @OnClick(R.id.tv_test)
+    void onClickTest() {
+        getViewController().addFragment(TestFragment.class, null);
+    }
+
+    @Override
+    void onRetry() {
+        ToastUtil.show("ahuhu");
+        hideLayoutRetry();
     }
 }

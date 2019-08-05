@@ -17,6 +17,7 @@ import com.kidd.projectbase.presenter.TestPresenter;
 import com.kidd.projectbase.presenter.loader.PresenterFactory;
 import com.kidd.projectbase.utils.Constants;
 import com.kidd.projectbase.utils.RecycleViewUtils;
+import com.kidd.projectbase.utils.ToastUtil;
 import com.kidd.projectbase.utils.Util;
 import com.kidd.projectbase.view.TestView;
 
@@ -25,6 +26,7 @@ import java.util.ArrayList;
 import javax.inject.Inject;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 public final class TestFragment extends BaseFragment<TestPresenter, TestView> implements TestView {
     @Inject
@@ -44,17 +46,17 @@ public final class TestFragment extends BaseFragment<TestPresenter, TestView> im
     private ListenerChooseImage listenerChooseImage;
 
     private GalleryAdapter adapter;
-    private ArrayList<ImageObject> lsImageChoosed = new ArrayList<>( );
+    private ArrayList<ImageObject> lsImageChoosed = new ArrayList<>();
     private int numberImage = 3;
     private String type = Constants.VALUE_TYPE_CHOOSE_IMAGE_MUTIL;
 
     @Override
     public void initView() {
         super.initView();
-        mProgressBar.setVisibility(View.VISIBLE);
-        lsImageChoosed = new ArrayList<>();
+//        mProgressBar.setVisibility(View.VISIBLE);
+//        lsImageChoosed = new ArrayList<>();
 
-        new LoadImagePath().execute();
+//        new LoadImagePath().execute();
     }
 
     @Override
@@ -68,6 +70,7 @@ public final class TestFragment extends BaseFragment<TestPresenter, TestView> im
 
     @Override
     public boolean backPressed() {
+        getViewController().backFromAddFragment(null);
         return false;
     }
 
@@ -82,6 +85,12 @@ public final class TestFragment extends BaseFragment<TestPresenter, TestView> im
         return mPresenterFactory;
     }
 
+    @OnClick(R.id.btn_show)
+    void onShow() {
+        if (getActivity() != null && getActivity() instanceof MainActivity) {
+            ((MainActivity) getActivity()).showLayoutRetry();
+        }
+    }
 
     private void loadUi(ArrayList<ImageObject> ls) {
         DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
@@ -159,5 +168,10 @@ public final class TestFragment extends BaseFragment<TestPresenter, TestView> im
 
     public void setListenerChooseImage(ListenerChooseImage listenerChooseImage) {
         this.listenerChooseImage = listenerChooseImage;
+    }
+
+    @Override
+    void onRetry() {
+        ToastUtil.show("Test nao");
     }
 }

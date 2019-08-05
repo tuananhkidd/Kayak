@@ -194,6 +194,7 @@ public class ViewController<T extends BaseFragment> {
             if (onFragmentChangedListener != null) {
                 onFragmentChangedListener.onFragmentChanged();
             }
+            currentFragment.hideLayoutRetry();
             return true;
         } else {
             return false;
