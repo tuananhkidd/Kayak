@@ -3,7 +3,9 @@ package com.kidd.projectbase.presenter.impl;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
+import com.kidd.projectbase.network.NetworkCheckerInterceptor;
 import com.kidd.projectbase.presenter.MainPresenter;
+import com.kidd.projectbase.utils.ToastUtil;
 import com.kidd.projectbase.view.MainView;
 import com.kidd.projectbase.interactor.MainInteractor;
 
@@ -15,6 +17,7 @@ public final class MainPresenterImpl extends BasePresenterImpl<MainView> impleme
      */
     @NonNull
     private final MainInteractor mInteractor;
+    private int countOnCreate = 0;
 
     // The view is available using the mView variable
 
@@ -26,7 +29,15 @@ public final class MainPresenterImpl extends BasePresenterImpl<MainView> impleme
     @Override
     public void onStart(boolean viewCreated) {
         super.onStart(viewCreated);
-        testApi();
+        if (viewCreated) {
+            testApi();
+        }
+        countOnCreate++;
+    }
+
+    @Override
+    public int getCountOnCreate() {
+        return countOnCreate;
     }
 
     @Override
@@ -58,6 +69,9 @@ public final class MainPresenterImpl extends BasePresenterImpl<MainView> impleme
                         throwable -> {
                             if (mView != null) {
                                 mView.showLayoutRetry();
+                            }
+                            if (throwable instanceof NetworkCheckerInterceptor.NoConnectivityException) {
+                                ToastUtil.show("Không có kết nối mạng");
                             }
                             throwable.printStackTrace();
                         }

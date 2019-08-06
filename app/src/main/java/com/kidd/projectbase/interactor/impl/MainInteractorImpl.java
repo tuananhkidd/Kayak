@@ -9,6 +9,8 @@ import com.kidd.projectbase.network.response.CarResponse;
 import com.kidd.projectbase.utils.rx.AppRxSchedulers;
 import com.kidd.projectbase.utils.rx.RxSchedulers;
 
+import java.util.List;
+
 import io.reactivex.Single;
 
 public final class MainInteractorImpl implements MainInteractor {
@@ -23,7 +25,7 @@ public final class MainInteractorImpl implements MainInteractor {
     }
 
     @Override
-    public Single<BaseResponse<CarResponse>> getListCar() {
+    public Single<BaseResponse<List<CarResponse>>> getListCar() {
         return apis.getCar()
                 .observeOn(rxSchedulers.androidThread())
                 .subscribeOn(rxSchedulers.compute());

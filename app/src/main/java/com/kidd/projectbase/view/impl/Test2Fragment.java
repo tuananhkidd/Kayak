@@ -67,4 +67,9 @@ public final class Test2Fragment extends BaseFragment<Test2Presenter, Test2View>
         ToastUtil.show("ahuhu");
         hideLayoutRetry();
     }
+
+    @Override
+    void onRefreshData() {
+
+    }
 }

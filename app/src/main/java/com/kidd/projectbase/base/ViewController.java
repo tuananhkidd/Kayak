@@ -5,7 +5,9 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 
 
+import com.kidd.projectbase.App;
 import com.kidd.projectbase.R;
+import com.kidd.projectbase.utils.DeviceUtil;
 import com.kidd.projectbase.view.impl.BaseFragment;
 
 import java.util.ArrayList;
@@ -34,10 +36,6 @@ public class ViewController<T extends BaseFragment> {
         this.layoutId = layoutId;
         listAddFragment = new ArrayList<>();
         //listClass = new ArrayList<>();
-    }
-
-    public static String wss_b() {
-        return "0742e61692f77732f6c69766563686174";
     }
 
     public BaseFragment getCurrentFragment() {
@@ -176,7 +174,7 @@ public class ViewController<T extends BaseFragment> {
     }
 
     public boolean backFromAddFragment(HashMap<String, Object> data) {
-        if (listAddFragment.size() >= 2) {
+        if (listAddFragment.size() >= 2 && DeviceUtil.hasNetworkConnection(App.getContext())) {
             listAddFragment.remove(listAddFragment.size() - 1);
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.remove(currentFragment);

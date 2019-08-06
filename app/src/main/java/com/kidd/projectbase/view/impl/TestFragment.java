@@ -174,4 +174,9 @@ public final class TestFragment extends BaseFragment<TestPresenter, TestView> im
     void onRetry() {
         ToastUtil.show("Test nao");
     }
+
+    @Override
+    void onRefreshData() {
+
+    }
 }
