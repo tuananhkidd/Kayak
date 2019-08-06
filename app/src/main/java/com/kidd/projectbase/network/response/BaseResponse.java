@@ -1,10 +1,17 @@
 package com.kidd.projectbase.network.response;
 
-import java.util.List;
-
 public class BaseResponse<T> {
     private int status;
-    private List<T> data;
+    private String msg;
+    private T data;
+
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
+    }
 
     public int getStatus() {
         return status;
@@ -14,11 +21,11 @@ public class BaseResponse<T> {
         this.status = status;
     }
 
-    public List<T> getData() {
+    public T getData() {
         return data;
     }
 
-    public void setData(List<T> data) {
+    public void setData(T data) {
         this.data = data;
     }
 }
