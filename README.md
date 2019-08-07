@@ -1,5 +1,4 @@
-# Division 1
-Android project base
+
 ## About this project base
 This project base uses MVP architecture with Dagger and RxAndroid. 
 If do not have knowledge about it, please read the tutorial before.
@@ -28,7 +27,6 @@ To faster in develop flow MVP you can use MVP template (https://github.com/benoi
 - Add or remove module which not should be included in your project.
 
 ## More info:
-- Credit: Division1 - Rikkeisoft
-- Author: NamHV (namhv@rikkeisoft.com)
+- Author: Tuấn Anh Kidd
 - Contributor:
 ## If you want contribute this project, please create a new merge request.
