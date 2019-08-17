@@ -8,5 +8,12 @@
     <dimen name="margin_10dp">10dp</dimen>
     <dimen name="text_size16">16sp</dimen>
     <dimen name="text_siz16">16sp</dimen>
+    <dimen name="margin_6dp">6dp</dimen>
+    <dimen name="margin_26dp">26dp</dimen>
+    <dimen name="margin_16dp">16dp</dimen>
+    <dimen name="margin_2dp">2dp</dimen>
+    <dimen name="margin_4dp">4dp</dimen>
+    <dimen name="margin_1dp">1dp</dimen>
+    <dimen name="margin_24dp">24dp</dimen>
 
 </resources>

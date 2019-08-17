@@ -1,8 +1,12 @@
 package com.kidd.projectbase.view.impl;
 
 import android.support.annotation.NonNull;
+import android.view.Gravity;
+import android.widget.TextView;
 
 import com.kidd.projectbase.R;
+import com.kidd.projectbase.custom.tooltip.ToolTip;
+import com.kidd.projectbase.custom.tooltip.ToolTipView;
 import com.kidd.projectbase.injection.AppComponent;
 import com.kidd.projectbase.injection.DaggerTest2ViewComponent;
 import com.kidd.projectbase.injection.Test2ViewModule;
@@ -13,6 +17,7 @@ import com.kidd.projectbase.view.Test2View;
 
 import javax.inject.Inject;
 
+import butterknife.BindView;
 import butterknife.OnClick;
 
 public final class Test2Fragment extends BaseFragment<Test2Presenter, Test2View> implements Test2View {
@@ -20,7 +25,8 @@ public final class Test2Fragment extends BaseFragment<Test2Presenter, Test2View>
     PresenterFactory<Test2Presenter> mPresenterFactory;
 
     // Your presenter is available using the mPresenter variable
-
+    @BindView(R.id.tv_test)
+    TextView tvTest;
     public Test2Fragment() {
         // Required empty public constructor
     }
@@ -28,7 +34,29 @@ public final class Test2Fragment extends BaseFragment<Test2Presenter, Test2View>
     @Override
     public void initView() {
         super.initView();
-        showLayoutRetry();
+//        showLayoutRetry();
+        tvTest.setOnClickListener(v->{
+            ToolTip toolTip = new ToolTip.Builder()
+                    .withText("Simple Tool Tip!")
+                    .withTextSize(getResources().getDimension(R.dimen.text_size16))
+                    .withPadding(16,16,16,16)
+                    .withCornerRadius(getResources().getDimension(R.dimen.margin_8dp))
+                    .build();
+            ToolTipView toolTipView = new ToolTipView.Builder(getContext())
+                    .withAnchor(tvTest)
+                    .withToolTip(toolTip)
+                    .withGravity(Gravity.BOTTOM)
+                    .build();
+            toolTipView.show();
+
+            toolTipView.setOnToolTipClickedListener(new ToolTipView.OnToolTipClickedListener() {
+                @Override
+                public void onToolTipClicked(ToolTipView toolTipView) {
+                    ToastUtil.show("ahihi");
+                }
+            });
+        });
+
     }
 
     @Override
