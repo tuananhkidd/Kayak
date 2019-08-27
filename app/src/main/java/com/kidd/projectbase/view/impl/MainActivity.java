@@ -121,7 +121,7 @@ public final class MainActivity extends BaseActivity<MainPresenter, MainView> im
                 showLayoutRetry();
             }
         }
-        countOnNetWorkEvent++;
+//        countOnNetWorkEvent++;
 
         EventBus.getDefault().removeStickyEvent(networkChangeEvent);
     }

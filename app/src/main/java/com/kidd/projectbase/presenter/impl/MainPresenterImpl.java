@@ -70,10 +70,7 @@ public final class MainPresenterImpl extends BasePresenterImpl<MainView> impleme
                             if (mView != null) {
                                 mView.showLayoutRetry();
                             }
-                            if (throwable instanceof NetworkCheckerInterceptor.NoConnectivityException) {
-                                ToastUtil.show("Không có kết nối mạng");
-                            }
-                            throwable.printStackTrace();
+
                         }
                 ));
     }

@@ -13,7 +13,7 @@ import org.greenrobot.eventbus.EventBus;
 public class NetworkChangeReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
-        Toast.makeText(context, "Network is turned ON/OF", Toast.LENGTH_SHORT).show();
+//        Toast.makeText(context, "Network is turned ON/OF", Toast.LENGTH_SHORT).show();
         if (DeviceUtil.hasNetworkConnection(context)) {
             EventBus.getDefault().postSticky(new NetworkChangeEvent(true));
         } else {

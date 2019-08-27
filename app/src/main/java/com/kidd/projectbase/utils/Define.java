@@ -9,19 +9,6 @@ public class Define {
 
     public static final String SERVICE = "service";
 
-    public static final String PREF_FILE_NAME = "tetviet_pref";
-    public static final String REALM_NAME = "tetviet_db.realm";
-    public static final String WEATHER_API = "weather";
-    public static final String FORECAST_API = "forecast";
-    public static final String DAILY_API = "/daily";
-    public static final String UNITS = "metric";
-    public static final String LANG = "vi";
-    public static final String All = "all";
-    public static final int CNT_TIME = 10;
-    public static final int CNT_DAY = 7;
-    public static final int MAX_TOUR = 5;
-    public static final Float DEFAULT_TEMPERATE = 10000f;
-
     public static final String APP_FOLDER_NAME = ".beetech";
     public static final String APP_FOLDER_CAPTURED = "beetech_captured";
     public static final String APP_FOLDER_CAPTURED_CODE = "code_beetech";
