@@ -1,11 +1,8 @@
 package com.kidd.projectbase.presenter.impl;
 
-import android.support.annotation.NonNull;
-import android.util.Log;
+import androidx.annotation.NonNull;
 
-import com.kidd.projectbase.network.NetworkCheckerInterceptor;
 import com.kidd.projectbase.presenter.MainPresenter;
-import com.kidd.projectbase.utils.ToastUtil;
 import com.kidd.projectbase.view.MainView;
 import com.kidd.projectbase.interactor.MainInteractor;
 
@@ -17,7 +14,6 @@ public final class MainPresenterImpl extends BasePresenterImpl<MainView> impleme
      */
     @NonNull
     private final MainInteractor mInteractor;
-    private int countOnCreate = 0;
 
     // The view is available using the mView variable
 
@@ -29,50 +25,8 @@ public final class MainPresenterImpl extends BasePresenterImpl<MainView> impleme
     @Override
     public void onStart(boolean viewCreated) {
         super.onStart(viewCreated);
-        if (viewCreated) {
-            testApi();
-        }
-        countOnCreate++;
-    }
 
-    @Override
-    public int getCountOnCreate() {
-        return countOnCreate;
-    }
-
-    @Override
-    public void testApi() {
-        compositeDisposable.add(mInteractor.getListCar()
-                .doOnSubscribe(
-                        disposable -> {
-                            if (mView != null) {
-                                mView.showLoading();
-                            }
-                        }
-                )
-                .doFinally(() -> {
-                    if (mView != null) {
-                        mView.hiddenLoading();
-                    }
-                })
-                .subscribe(
-                        response -> {
-                            if (response.getStatus() == 200) {
-                                Log.v("ahihi", response.getData().toString());
-                            } else {
-                                if (mView != null) {
-                                    mView.showLayoutRetry();
-                                }
-
-                            }
-                        },
-                        throwable -> {
-                            if (mView != null) {
-                                mView.showLayoutRetry();
-                            }
-
-                        }
-                ));
+        // Your code here. Your view is available using mView and will not be null until next onStop()
     }
 
     @Override

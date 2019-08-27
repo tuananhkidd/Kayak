@@ -1,7 +1,7 @@
 package com.kidd.projectbase.view.impl;
 
 import android.content.IntentFilter;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
@@ -50,15 +50,7 @@ public final class MainActivity extends BaseActivity<MainPresenter, MainView> im
     @Override
     public void initView() {
         super.initView();
-
-        getViewController().addFragment(Test2Fragment.class, null);
-        btnRetry.setOnClickListener(v -> {
-            if (getViewController().getCurrentFragment() == null) {
-                mPresenter.testApi();
-            } else {
-                getViewController().getCurrentFragment().onRetry();
-            }
-        });
+        getViewController().addFragment(HomeFragment.class,null);
         EventBus.getDefault().register(this);
         receiver = new NetworkChangeReceiver();
         final IntentFilter filter = new IntentFilter("android.net.conn.CONNECTIVITY_CHANGE");
@@ -113,7 +105,6 @@ public final class MainActivity extends BaseActivity<MainPresenter, MainView> im
             if (networkChangeEvent.isNetWork()) {
                 hideLayoutRetry();
                 if (getViewController().getCurrentFragment() == null) {
-                    mPresenter.testApi();
                 } else {
                     getViewController().getCurrentFragment().onRefreshData();
                 }

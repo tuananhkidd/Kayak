@@ -1,20 +1,12 @@
 package com.kidd.projectbase.presenter.impl;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.kidd.projectbase.presenter.BasePresenter;
 import com.kidd.projectbase.view.BaseView;
 
-import java.io.IOException;
-import java.net.ConnectException;
-import java.net.SocketTimeoutException;
-import java.net.UnknownHostException;
-
 import io.reactivex.disposables.CompositeDisposable;
-import retrofit2.HttpException;
 
 /**
  * Abstract presenter implementation that contains base implementation for other presenters.

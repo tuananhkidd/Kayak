@@ -2,7 +2,7 @@ package com.kidd.projectbase.custom;
 
 import android.app.AlertDialog;
 import android.content.Context;
-import android.support.annotation.StringRes;
+import androidx.annotation.StringRes;
 
 public class BaseDialog {
 

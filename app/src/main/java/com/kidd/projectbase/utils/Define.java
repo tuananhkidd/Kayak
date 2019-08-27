@@ -9,11 +9,11 @@ public class Define {
 
     public static final String SERVICE = "service";
 
-    public static final String APP_FOLDER_NAME = ".beetech";
-    public static final String APP_FOLDER_CAPTURED = "beetech_captured";
-    public static final String APP_FOLDER_CAPTURED_CODE = "code_beetech";
-    public static final String APP_FOLDER_CAPTURED_OPEN = "beetech";
-    public static final String APP_FOLDER_CAPTURED_TEMP = ".beetech_captured_temp";
+    public static final String APP_FOLDER_NAME = ".base";
+    public static final String APP_FOLDER_CAPTURED = "base_captured";
+    public static final String APP_FOLDER_CAPTURED_CODE = "code_base";
+    public static final String APP_FOLDER_CAPTURED_OPEN = "base";
+    public static final String APP_FOLDER_CAPTURED_TEMP = ".base_captured_temp";
     public static final String APP_FOLDER_CAPTURED_PROVIDER = BuildConfig.APPLICATION_ID + ".fileprovider";
     public static final int REQUEST_SERVER_SUCCESS = 200;
 

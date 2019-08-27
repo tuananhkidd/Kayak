@@ -1,24 +1,24 @@
 package com.kidd.projectbase.presenter.impl;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
-import com.kidd.projectbase.presenter.Test2Presenter;
-import com.kidd.projectbase.view.Test2View;
-import com.kidd.projectbase.interactor.Test2Interactor;
+import com.kidd.projectbase.presenter.HomePresenter;
+import com.kidd.projectbase.view.HomeView;
+import com.kidd.projectbase.interactor.HomeInteractor;
 
 import javax.inject.Inject;
 
-public final class Test2PresenterImpl extends BasePresenterImpl<Test2View> implements Test2Presenter {
+public final class HomePresenterImpl extends BasePresenterImpl<HomeView> implements HomePresenter {
     /**
      * The interactor
      */
     @NonNull
-    private final Test2Interactor mInteractor;
+    private final HomeInteractor mInteractor;
 
     // The view is available using the mView variable
 
     @Inject
-    public Test2PresenterImpl(@NonNull Test2Interactor interactor) {
+    public HomePresenterImpl(@NonNull HomeInteractor interactor) {
         mInteractor = interactor;
     }
 

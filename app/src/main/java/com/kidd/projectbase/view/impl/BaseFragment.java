@@ -2,12 +2,12 @@ package com.kidd.projectbase.view.impl;
 
 import android.os.Bundle;
 import android.os.Parcelable;
-import android.support.annotation.LayoutRes;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.LoaderManager;
-import android.support.v4.content.Loader;
+import androidx.annotation.LayoutRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.loader.app.LoaderManager;
+import androidx.loader.content.Loader;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -326,18 +326,19 @@ public abstract class BaseFragment<P extends BasePresenter<V>, V extends BaseVie
 
     @Override
     public void showLayoutRetry() {
-        if (getActivity() != null && getActivity() instanceof MainActivity) {
-            ((MainActivity) getActivity()).showLayoutRetry();
-        }
+//        if (getActivity() != null && getActivity() instanceof MainActivity) {
+//            ((MainActivity) getActivity()).showLayoutRetry();
+//        }
     }
 
     @Override
     public void hideLayoutRetry() {
-        if (getActivity() != null && getActivity() instanceof MainActivity) {
-            ((MainActivity) getActivity()).hideLayoutRetry();
-        }
+//        if (getActivity() != null && getActivity() instanceof MainActivity) {
+//            ((MainActivity) getActivity()).hideLayoutRetry();
+//        }
     }
 
     abstract void onRetry();
+
     abstract void onRefreshData();
 }

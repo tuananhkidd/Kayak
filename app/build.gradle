@@ -9,7 +9,7 @@ android {
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
 //    signingConfigs {
@@ -31,7 +31,7 @@ android {
         buildTypes {
             debug {
 //                signingConfig signingConfigs.debug
-                buildConfigField "String", "API_BASE_URL", '"http://api.timdatxe.com/"'
+                buildConfigField "String", "API_BASE_URL", '"http://api.com/"'
             }
 
             release {
@@ -49,12 +49,12 @@ android {
 //    productFlavors {
 //        develop {
 //            dimension "version"
-//            applicationId "com.develop.beetech"
+//            applicationId "com.develop"
 //            resValue "string", "app_name", "Develop"
 //        }
-//        beetech {
+//        release {
 //            dimension "version"
-//            applicationId "com.beetech"
+//            applicationId "com.release"
 //            resValue "string", "app_name", "Release"
 //        }
 //    }
@@ -71,27 +71,27 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.android.support:customtabs:28.0.0'
-    implementation 'com.android.support:appcompat-v7:28.0.0'
-    implementation 'com.android.support:design:28.0.0'
-    implementation 'com.android.support:support-v4:28.0.0'
-    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    implementation 'androidx.browser:browser:1.0.0'
+    implementation 'androidx.appcompat:appcompat:1.0.0'
+    implementation 'com.google.android.material:material:1.0.0'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
 
     // DI
     implementation 'com.google.dagger:dagger:2.19'
     implementation "com.google.dagger:dagger-android-support:2.19"
     annotationProcessor 'com.google.dagger:dagger-compiler:2.19'
 
-    implementation 'com.jakewharton:butterknife:8.8.1'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+    implementation 'com.jakewharton:butterknife:10.1.0'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:10.1.0'
 
     // Network
     implementation 'com.google.code.gson:gson:2.8.5'
-    implementation 'com.squareup.retrofit2:retrofit:2.4.0'
-    implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
-    implementation 'com.squareup.okhttp3:logging-interceptor:3.12.1'
+    implementation 'com.squareup.retrofit2:retrofit:2.5.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.14.0'
     // Rx adapter for retrofit
-    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.4.0'
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.5.0'
 
     // Rx
     implementation 'io.reactivex.rxjava2:rxjava:2.2.8'

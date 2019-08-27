@@ -1,6 +1,7 @@
 package com.kidd.projectbase.presenter.loader;
 
-import android.support.annotation.NonNull;
+
+import androidx.annotation.NonNull;
 
 import com.kidd.projectbase.presenter.BasePresenter;
 

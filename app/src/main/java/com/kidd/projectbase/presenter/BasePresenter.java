@@ -1,6 +1,6 @@
 package com.kidd.projectbase.presenter;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.kidd.projectbase.view.BaseView;
 

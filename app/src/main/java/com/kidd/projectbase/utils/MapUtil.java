@@ -1,11 +1,7 @@
 package com.kidd.projectbase.utils;
 
-import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.Color;
-import android.os.Handler;
-import android.support.annotation.DrawableRes;
-import android.support.annotation.RawRes;
+import androidx.annotation.DrawableRes;
+import androidx.annotation.RawRes;
 
 //import com.google.android.gms.maps.GoogleMap;
 //import com.google.android.gms.maps.model.BitmapDescriptorFactory;
@@ -15,9 +11,6 @@ import android.support.annotation.RawRes;
 //import com.google.maps.android.geojson.GeoJsonLayer;
 //import com.google.maps.android.geojson.GeoJsonPolygonStyle;
 
-import org.json.JSONException;
-
-import java.io.IOException;
 
 public class MapUtil {
 
