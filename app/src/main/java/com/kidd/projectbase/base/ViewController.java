@@ -16,7 +16,6 @@ import java.util.List;
 
 public class ViewController<T extends BaseFragment> {
 
-    public static String a = "314542";
     private int layoutId;
     private FragmentManager fragmentManager;
     private List<T> listAddFragment;
@@ -299,9 +298,10 @@ public class ViewController<T extends BaseFragment> {
 //        }
 //    }
 
-    //    public void clearAllFragment() {
-//        listClass.clear();
-//    }
+    public void clearAllFragment() {
+        listAddFragment.clear();
+    }
+
     public Fragment findFragmentByTag(String tag) {
         return fragmentManager.findFragmentByTag(tag);
     }
