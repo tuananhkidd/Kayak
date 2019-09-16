@@ -5,4 +5,18 @@
     <string name="no_internet_connection">Không có kết nối Internet</string>
     <string name="error_happen_retry_again">Có lỗi xảy ra.Thử lại</string>
     <string name="loading">Đang tải …</string>
+
+
+    //instagram login
+    <string name="client_id">8ff06a410d0e4ccbaa05311aac6e1e27</string>
+    <string name="redirect_url">https://tuananhdeptrai96.000webhostapp.com/</string>
+    <string name="base_url">https://api.instagram.com/</string>
+    <string name="get_user_info_url">https://api.instagram.com/v1/users/self</string>
+
+    //zalo login
+    <string name="appID">3515053098841306602</string>
+    <string name="title_loginsocial">loginsocial</string>
+
+    //facebook login
+    <string name="facebook_app_id">573017656569089</string>
 </resources>

@@ -87,14 +87,14 @@ dependencies {
 
     // Network
     implementation 'com.google.code.gson:gson:2.8.5'
-    implementation 'com.squareup.retrofit2:retrofit:2.5.0'
+    implementation 'com.squareup.retrofit2:retrofit:2.6.1'
     implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
-    implementation 'com.squareup.okhttp3:logging-interceptor:3.14.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.14.2'
     // Rx adapter for retrofit
-    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.5.0'
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.6.1'
 
     // Rx
-    implementation 'io.reactivex.rxjava2:rxjava:2.2.8'
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.11'
     implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
 
     // Image loader
@@ -111,4 +111,9 @@ dependencies {
     //eventbus
     implementation "org.greenrobot:eventbus:3.1.1"
 
+    //socail login
+    implementation 'com.google.android.gms:play-services-auth:17.0.0'
+    implementation "com.zing.zalo.zalosdk:core:+"
+    implementation "com.zing.zalo.zalosdk:auth:+"
+    implementation "com.facebook.android:facebook-android-sdk:4.35.0"
 }

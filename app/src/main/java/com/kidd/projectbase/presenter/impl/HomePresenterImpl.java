@@ -2,9 +2,10 @@ package com.kidd.projectbase.presenter.impl;
 
 import androidx.annotation.NonNull;
 
+import com.kidd.projectbase.entity.login_response.InstagramLoginResponse;
+import com.kidd.projectbase.interactor.HomeInteractor;
 import com.kidd.projectbase.presenter.HomePresenter;
 import com.kidd.projectbase.view.HomeView;
-import com.kidd.projectbase.interactor.HomeInteractor;
 
 import javax.inject.Inject;
 
@@ -44,5 +45,31 @@ public final class HomePresenterImpl extends BasePresenterImpl<HomeView> impleme
          */
 
         super.onPresenterDestroyed();
+    }
+
+    @Override
+    public void loginInstagram(String token) {
+        compositeDisposable.add(mInteractor.loginInstagram(token)
+                .doOnSubscribe(disposable -> {
+                    if (mView != null) {
+                        mView.showLoading();
+                    }
+                })
+                .doFinally(() -> {
+                    if (mView != null) {
+                        mView.hiddenLoading();
+                    }
+                })
+                .subscribe(
+                        response -> {
+                            if (mView != null && response != null && response.getData() != null) {
+                                InstagramLoginResponse instagramLoginResponse = response.getData();
+                                mView.showUserInfo(instagramLoginResponse.getId(), instagramLoginResponse.getUserName(), instagramLoginResponse.getAvatar());
+                            }
+                        }
+                        , throwable -> {
+
+                        }
+                ));
     }
 }

@@ -1,28 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".view.impl.HomeFragment"
     >
 
-    <com.kidd.projectbase.custom.CustomToolbar
-        android:id="@+id/toolbar"
+    <Button
+        android:id="@+id/btn_fb_login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:ct_title="Ahuhu"
-        />
-    <ImageView
-        android:visibility="gone"
-        android:id="@+id/iv"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_centerInParent="true"
-        android:src="@drawable/ic_marker_red"
-        android:text="@string/app_name"
+        android:text="Facebook Login"
         />
 
-</RelativeLayout>
+    <Button
+        android:id="@+id/btn_zalo_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Zalo Login"
+        />
+
+    <Button
+        android:id="@+id/btn_google_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Google Login"
+        />
+
+    <Button
+        android:id="@+id/btn_instagram_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Instagram Login"
+        />
+
+
+    <Button
+        android:id="@+id/btn_sign_out"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Logout"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_16dp"
+        android:text="Thông tin:"
+        />
+
+    <TextView
+        android:id="@+id/tv_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_16dp"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_size16"
+        android:textStyle="bold"
+        tools:text="Thông tin:"
+        />
+
+</LinearLayout>

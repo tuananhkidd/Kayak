@@ -1,11 +1,19 @@
 package com.kidd.projectbase.view.impl;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.content.IntentFilter;
-import androidx.annotation.NonNull;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 
+import androidx.annotation.NonNull;
+
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.tasks.Task;
 import com.kidd.projectbase.R;
 import com.kidd.projectbase.base.ViewController;
 import com.kidd.projectbase.bus_event.NetworkChangeEvent;
@@ -14,8 +22,11 @@ import com.kidd.projectbase.injection.DaggerMainViewComponent;
 import com.kidd.projectbase.injection.MainViewModule;
 import com.kidd.projectbase.presenter.MainPresenter;
 import com.kidd.projectbase.presenter.loader.PresenterFactory;
+import com.kidd.projectbase.service.LoginSocialEngine;
 import com.kidd.projectbase.service.NetworkChangeReceiver;
+import com.kidd.projectbase.utils.DeviceUtil;
 import com.kidd.projectbase.view.MainView;
+import com.zing.zalo.zalosdk.oauth.ZaloSDK;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -50,11 +61,9 @@ public final class MainActivity extends BaseActivity<MainPresenter, MainView> im
     @Override
     public void initView() {
         super.initView();
-        getViewController().addFragment(HomeFragment.class,null);
+        getViewController().addFragment(HomeFragment.class, null);
         EventBus.getDefault().register(this);
-        receiver = new NetworkChangeReceiver();
-        final IntentFilter filter = new IntentFilter("android.net.conn.CONNECTIVITY_CHANGE");
-        registerReceiver(receiver, filter);
+        DeviceUtil.getApplicationHashKey(this);
     }
 
     @Override
@@ -115,5 +124,26 @@ public final class MainActivity extends BaseActivity<MainPresenter, MainView> im
 //        countOnNetWorkEvent++;
 
         EventBus.getDefault().removeStickyEvent(networkChangeEvent);
+    }
+
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+        ZaloSDK.Instance.onActivityResult(this,requestCode, resultCode, data);
+        getViewController().getCurrentFragment().onActivityResult(requestCode,resultCode,data);
+        if (resultCode == Activity.RESULT_OK)
+            if (requestCode == LoginSocialEngine.GOOGLE_REQUEST_CODE_LOGIN) {
+                try {
+                    Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+                    GoogleSignInAccount account = task.getResult(ApiException.class);
+                    BaseFragment currentFragment = getViewController().getCurrentFragment();
+                    if (currentFragment instanceof HomeFragment) {
+                        ((HomeFragment) currentFragment).showUserInfo(account.getId(), account.getDisplayName(), account.getPhotoUrl().toString());
+                    }
+                } catch (ApiException e) {
+                    Log.w("HomeFrament", "signInResult:failed code=" + e.getStatusCode());
+                }
+            }
     }
 }

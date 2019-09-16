@@ -4,9 +4,11 @@ import androidx.annotation.NonNull;
 
 import com.kidd.projectbase.interactor.HomeInteractor;
 import com.kidd.projectbase.interactor.impl.HomeInteractorImpl;
+import com.kidd.projectbase.network.request.Apis;
 import com.kidd.projectbase.presenter.loader.PresenterFactory;
 import com.kidd.projectbase.presenter.HomePresenter;
 import com.kidd.projectbase.presenter.impl.HomePresenterImpl;
+import com.kidd.projectbase.utils.rx.RxSchedulers;
 
 import dagger.Module;
 import dagger.Provides;
@@ -14,8 +16,8 @@ import dagger.Provides;
 @Module
 public final class HomeViewModule {
     @Provides
-    public HomeInteractor provideInteractor() {
-        return new HomeInteractorImpl();
+    public HomeInteractor provideInteractor(RxSchedulers rxSchedulers, Apis apis) {
+        return new HomeInteractorImpl(rxSchedulers, apis);
     }
 
     @Provides

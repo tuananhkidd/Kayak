@@ -1,37 +1,33 @@
 package com.kidd.projectbase.view.impl;
 
-import android.animation.Animator;
-import android.util.Log;
-import android.view.MotionEvent;
-import android.view.View;
-import android.widget.ImageView;
+import android.content.Intent;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
+import com.facebook.CallbackManager;
 import com.kidd.projectbase.R;
-import com.kidd.projectbase.custom.CustomToolbar;
 import com.kidd.projectbase.injection.AppComponent;
 import com.kidd.projectbase.injection.DaggerHomeViewComponent;
 import com.kidd.projectbase.injection.HomeViewModule;
 import com.kidd.projectbase.presenter.HomePresenter;
 import com.kidd.projectbase.presenter.loader.PresenterFactory;
+import com.kidd.projectbase.service.LoginSocialEngine;
 import com.kidd.projectbase.view.HomeView;
 
 import javax.inject.Inject;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 public final class HomeFragment extends BaseFragment<HomePresenter, HomeView> implements HomeView {
     @Inject
     PresenterFactory<HomePresenter> mPresenterFactory;
 
-    @BindView(R.id.iv)
-    ImageView ivAnim;
-    @BindView(R.id.container)
-    View container;
-    @BindView(R.id.toolbar)
-    CustomToolbar toolbar;
-    // Your presenter is available using the mPresenter variable
+    @BindView(R.id.tv_info)
+    TextView tvInfo;
+
+    private CallbackManager callbackManager;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -49,42 +45,7 @@ public final class HomeFragment extends BaseFragment<HomePresenter, HomeView> im
     @Override
     public void initView() {
         super.initView();
-
-
-        toolbar.setOnClickLeftButtonListener(() -> {
-            getActivity().finish();
-        });
-
-        container.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                switch (motionEvent.getAction()) {
-                    case MotionEvent.ACTION_DOWN:
-                        ivAnim.animate()
-                                .translationY(-100)
-                                .scaleY(0.6f)
-                                .scaleX(0.6f)
-                                .setDuration(500)
-                                .start();
-                        Log.d("ahihi", "onTouch: down");
-                        break;
-                    case MotionEvent.ACTION_MOVE:
-                        Log.d("ahihi", "onTouch: move");
-                        break;
-                    case MotionEvent.ACTION_UP:
-                        Log.d("ahihi", "onTouch: up");
-                        ivAnim.animate()
-                                .translationY(0)
-                                .scaleY(1f)
-                                .scaleX(1f)
-                                .setDuration(500)
-                                .start();
-                        break;
-                }
-                return true;
-            }
-        });
-
+        callbackManager = CallbackManager.Factory.create();
     }
 
     @Override
@@ -105,6 +66,53 @@ public final class HomeFragment extends BaseFragment<HomePresenter, HomeView> im
     @Override
     void onRefreshData() {
 
+    }
+
+    @Override
+    public void showUserInfo(String id, String userName, String avatar) {
+        tvInfo.setText(id + "\n" + userName + "\n" + avatar);
+    }
+
+    @OnClick(R.id.btn_instagram_login)
+    void loginInstagram() {
+        LoginSocialEngine
+                .getInstance()
+                .setmPresenter(mPresenter)
+                .loginInstagram(getContext());
+    }
+
+    @OnClick(R.id.btn_google_login)
+    void loginGoogle() {
+        LoginSocialEngine
+                .getInstance()
+                .loginGoogle(getActivity());
+    }
+
+    @OnClick(R.id.btn_zalo_login)
+    void loginZalo() {
+        LoginSocialEngine.getInstance().loginZalo(getActivity(), zaloLoginResponse -> {
+            if (zaloLoginResponse != null) {
+                showUserInfo(zaloLoginResponse.getId(), zaloLoginResponse.getName(), zaloLoginResponse.getPicture().getData().getUrl());
+            }
+        });
+    }
+
+    @OnClick(R.id.btn_fb_login)
+    void fbLogin(){
+        LoginSocialEngine.getInstance().loginFacebook(callbackManager,this);
+    }
+
+    @OnClick(R.id.btn_sign_out)
+    void logout() {
+        LoginSocialEngine
+                .getInstance()
+                .logout(getContext());
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        callbackManager.onActivityResult(requestCode, resultCode, data);
     }
 
     @NonNull

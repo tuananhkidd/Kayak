@@ -9,6 +9,7 @@ import com.facebook.stetho.Stetho;
 import com.kidd.projectbase.injection.AppComponent;
 import com.kidd.projectbase.injection.AppModule;
 import com.kidd.projectbase.injection.DaggerAppComponent;
+import com.zing.zalo.zalosdk.oauth.ZaloSDKApplication;
 
 public final class App extends Application {
     private AppComponent mAppComponent;
@@ -29,6 +30,9 @@ public final class App extends Application {
 
         // Deploy tool
         DeployGate.install(this);
+
+        //zalo login
+        ZaloSDKApplication.wrap(this);
     }
 
     public static Context getContext() {
