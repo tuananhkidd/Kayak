@@ -72,32 +72,6 @@ public class ApiModule {
         return httpLoggingInterceptor;
     }
 
-//    @Provides
-//    @Singleton
-//    OtherApiInterface provideOtherApiInterface(@ApplicationContext Context context, RxJava2CallAdapterFactory rxAdapter) {
-//        HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
-//        loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-//
-//        NetworkCheckerInterceptor networkCheckerInterceptor = new NetworkCheckerInterceptor(context);
-//
-//        Gson gson = new GsonBuilder()
-//                .setLenient()
-//                .create();
-//        Retrofit retrofit = new Retrofit.Builder()
-//                .baseUrl(BuildConfig.FLAVOR.equals("aic") ? StringUtil.UA : StringUtil.UD)
-//                .client(new OkHttpClient.Builder()
-//                        .addInterceptor(networkCheckerInterceptor)
-//                        .connectTimeout(Define.DEFAULT_TIMEOUT, TimeUnit.SECONDS)
-//                        .readTimeout(Define.DEFAULT_TIMEOUT, TimeUnit.SECONDS)
-//                        .build())
-//                .addConverterFactory(GsonConverterFactory.create(gson))
-//                .addCallAdapterFactory(rxAdapter)
-//                .build();
-//
-//        return retrofit.create(OtherApiInterface.class);
-//    }
-
-
     @Provides
     Cache provideCache(File file) {
         return new Cache(file, 10 * 10 * 1000);
