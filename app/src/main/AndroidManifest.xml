@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.kidd.projectbase"
+    package="com.beetech.kayak"
     >
 
     <application
-        android:name=".App"
+        android:name="com.beetech.kayak.App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -13,7 +13,7 @@
         android:theme="@style/AppTheme"
         >
         <activity
-            android:name=".view.impl.MainActivity"
+            android:name="com.beetech.kayak.view.impl.MainActivity"
             android:label="@string/app_name"
             >
             <intent-filter>
@@ -22,47 +22,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity
-            android:name="com.zing.zalo.zalosdk.oauth.WebLoginActivity"
-            android:configChanges="orientation|screenSize"
-            android:screenOrientation="sensor"
-            android:theme="@style/FixThemeForLoginWebview"
-            android:windowSoftInputMode="stateHidden|stateAlwaysHidden"
-            >
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data
-                    android:host="oauthcode"
-                    android:scheme="zalo-3515053098841306602"
-                    />
-            </intent-filter>
-        </activity>
-
-        <activity
-            android:name="com.facebook.FacebookActivity"
-            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
-            android:label="@string/app_name"
-            />
-
-        <meta-data
-            android:name="com.zing.zalo.zalosdk.appID"
-            android:value="@string/appID"
-            />
-        <meta-data
-            android:name="com.facebook.sdk.ApplicationId"
-            android:value="@string/facebook_app_id"
-            />
-        <provider
-            android:name="com.facebook.FacebookContentProvider"
-            android:authorities="com.facebook.app.FacebookContentProvider1234567890xxxx"
-            android:exported="true"
-            />
-
     </application>
 
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />

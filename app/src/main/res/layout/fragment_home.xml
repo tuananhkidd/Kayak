@@ -9,58 +9,5 @@
     tools:context=".view.impl.HomeFragment"
     >
 
-    <Button
-        android:id="@+id/btn_fb_login"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Facebook Login"
-        />
-
-    <Button
-        android:id="@+id/btn_zalo_login"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Zalo Login"
-        />
-
-    <Button
-        android:id="@+id/btn_google_login"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Google Login"
-        />
-
-    <Button
-        android:id="@+id/btn_instagram_login"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Instagram Login"
-        />
-
-
-    <Button
-        android:id="@+id/btn_sign_out"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Logout"
-        />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_16dp"
-        android:text="Thông tin:"
-        />
-
-    <TextView
-        android:id="@+id/tv_info"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_16dp"
-        android:textColor="@color/black"
-        android:textSize="@dimen/text_size16"
-        android:textStyle="bold"
-        tools:text="Thông tin:"
-        />
 
 </LinearLayout>

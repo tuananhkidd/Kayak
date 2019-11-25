@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.kidd.projectbase.custom.SquareLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.beetech.kayak.custom.SquareLinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_marginBottom="5dp"
@@ -31,4 +32,4 @@
             android:layout_marginTop="5dp"
             android:checked="false" />
     </RelativeLayout>
-</com.kidd.projectbase.custom.SquareLinearLayout>
+</com.beetech.kayak.custom.SquareLinearLayout>
