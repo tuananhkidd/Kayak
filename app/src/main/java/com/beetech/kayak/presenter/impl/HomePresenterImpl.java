@@ -55,6 +55,8 @@ public final class HomePresenterImpl extends BasePresenterImpl<HomeView> impleme
          * Your code here. After this method, your presenter (and view) will be completely destroyed
          * so make sure to cancel any HTTP call or database connection
          */
+        CameraData cameraData = CameraData.getInstance();
+        cameraData.destroy();
 
         super.onPresenterDestroyed();
     }
