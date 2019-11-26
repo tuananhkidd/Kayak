@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Base64;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 
@@ -120,22 +121,28 @@ public final class HomePresenterImpl extends BasePresenterImpl<HomeView> impleme
 
     @Override
     public void processImageData(String base64String) {
-        byte[] decodedString = Base64.decode(base64String, Base64.DEFAULT);
-        Bitmap bitmap = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
-        CameraData cameraData = CameraData.getInstance();
-        cameraData.init();
-        if (bitmap == null || mView == null)
-            return;
-        mView.showPreviewImage(bitmap);
+        try {
+            byte[] decodedString = Base64.decode(base64String, Base64.DEFAULT);
+            Bitmap bitmap = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+            CameraData cameraData = CameraData.getInstance();
+            cameraData.init();
+            if (bitmap == null || mView == null)
+                return;
+            mView.showPreviewImage(bitmap);
 
-        cameraData.setBitmapData(bitmap);
+            cameraData.setBitmapData(bitmap);
 
-        CameraProgress progress = new CameraProgress(mView.getActivity(), false);
-        progress.setProgressTitle("Processing");        // プログレスタイトル
-        progress.setProgressMessage("Please Wait...");    // プログレスメッセージ
-        progress.setProgressCountUp(1);                    // カウントアップ値
-        progress.setProgressCountUpMills(250);            // カウントアップ間隔(ミリ秒)
-        progress.setProgressMaxCount(100);                // 最大カウント値
+            CameraProgress progress = new CameraProgress(mView.getActivity(), false);
+            progress.setProgressTitle("Processing");        // プログレスタイトル
+            progress.setProgressMessage("Please Wait...");    // プログレスメッセージ
+            progress.setProgressCountUp(1);                    // カウントアップ値
+            progress.setProgressCountUpMills(250);            // カウントアップ間隔(ミリ秒)
+            progress.setProgressMaxCount(100);                // 最大カウント値
 //                progress.execute("request");
+        } catch (Exception e) {
+            e.printStackTrace();
+            Log.v("ahihi", "error " + e.getMessage());
+        }
+
     }
 }
