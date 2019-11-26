@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Handler;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageView;
 
@@ -77,7 +78,8 @@ public final class HomeFragment extends BaseFragment<HomePresenter, HomeView> im
             if(resultCode == Activity.RESULT_OK){
                 if(mPresenter!=null){
                     String base64 = data.getStringExtra("data_image");
-                    mPresenter.processImageData(base64);
+                    Log.v("ahihi","data : "+base64);
+//                    mPresenter.processImageData(base64);
                 }
             }
         }
