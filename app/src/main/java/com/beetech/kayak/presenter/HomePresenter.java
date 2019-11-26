@@ -7,4 +7,5 @@ import com.beetech.kayak.view.HomeView;
 
 public interface HomePresenter extends BasePresenter<HomeView> {
     void onActivityResult(int requestCode, int resultCode, Intent data);
+    void processImageData(String base64String);
 }

@@ -1,5 +1,6 @@
 package com.beetech.kayak.view.impl;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -29,6 +30,7 @@ public final class HomeFragment extends BaseFragment<HomePresenter, HomeView> im
     PresenterFactory<HomePresenter> mPresenterFactory;
 
     public final static int PHOTO_GALLERY = 1;    // フォトギャラリーID
+    public final static int REQUEST_CODE_UNITY_CAMERA = 1696;
     @BindView(R.id.img_preview)
     ImageView imgPreview;
     @BindView(R.id.btn_select)
@@ -71,15 +73,25 @@ public final class HomeFragment extends BaseFragment<HomePresenter, HomeView> im
                 mPresenter.onActivityResult(requestCode, resultCode, data);
             }, 800);
         }
+        if(requestCode == REQUEST_CODE_UNITY_CAMERA){
+            if(resultCode == Activity.RESULT_OK){
+                if(mPresenter!=null){
+                    String base64 = data.getStringExtra("data_image");
+                    mPresenter.processImageData(base64);
+                }
+            }
+        }
     }
 
     @OnClick(R.id.btn_select)
-    void onSelectGalery() {
+    void onSelectGallery() {
         CameraData cameraData = CameraData.getInstance();
         cameraData.setSdcard(true);
 
         Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
         startActivityForResult(cameraIntent, PHOTO_GALLERY);
+
+        //start unity camera
     }
 
     @Override
