@@ -6,4 +6,9 @@
         <attr name="ct_title" format="reference|string" />
         <attr name="ct_visible_right" format="boolean" />
     </declare-styleable>
+
+    <declare-styleable name="InformationTextView">
+        <attr name="itv_title" format="reference|string" />
+        <attr name="itv_detail" format="reference|string" />
+    </declare-styleable>
 </resources>

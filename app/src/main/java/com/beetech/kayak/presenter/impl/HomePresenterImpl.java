@@ -60,66 +60,6 @@ public final class HomePresenterImpl extends BasePresenterImpl<HomeView> impleme
     }
 
     @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
-        switch (requestCode) {
-            case PHOTO_GALLERY: {
-
-                // フォトギャラリー
-                if (resultCode != RESULT_OK) return;
-
-                // カメラデータ取得
-                CameraData cameraData = CameraData.getInstance();
-
-                if (mView == null || intent.getExtras() == null) {
-                    return;
-                }
-                // カメラデータ変換
-                {
-                    // カメラデータ初期化(必須)
-                    cameraData.init();
-
-                    // 画像データを取得
-                    Bitmap bitmap = (Bitmap) intent.getExtras().get("data");
-                    mView.showPreviewImage(bitmap);
-                    {
-                        // ビットマップ画像を取得
-//                        try {
-//                            BitmapFactory.Options opt = new BitmapFactory.Options();
-//                            opt.inPreferredConfig = Bitmap.Config.ARGB_8888;
-//                            InputStream is = mView.getActivity().getContentResolver().openInputStream(photoUri);
-//                            // 情報を取得する
-//                            opt.inJustDecodeBounds = true;
-//                            BitmapFactory.decodeStream(is, null, opt);
-//                            opt.inJustDecodeBounds = false;
-//                            // 画像のロード
-//                            is = mView.getActivity().getContentResolver().openInputStream(photoUri);
-//                            bitmap = BitmapFactory.decodeStream(is, null, opt);
-//                        } catch (IOException e) {
-//
-//                        }
-                    }
-                    if (bitmap == null) return;
-
-                    // カメラデータに格納
-                    cameraData.setBitmapData(bitmap);
-                }
-
-                CameraProgress progress = new CameraProgress(mView.getActivity(), false);
-                progress.setProgressTitle("Processing");        // プログレスタイトル
-                progress.setProgressMessage("Please Wait...");    // プログレスメッセージ
-                progress.setProgressCountUp(1);                    // カウントアップ値
-                progress.setProgressCountUpMills(250);            // カウントアップ間隔(ミリ秒)
-                progress.setProgressMaxCount(100);                // 最大カウント値
-//                progress.execute("request");
-                break;
-            }
-            default:
-                break;
-        }
-
-    }
-
-    @Override
     public void processImageData(String base64String) {
         try {
             byte[] decodedString = Base64.decode(base64String, Base64.DEFAULT);

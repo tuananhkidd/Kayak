@@ -3,7 +3,13 @@ package com.beetech.kayak.ocr;
 import android.app.Activity;
 import android.graphics.Bitmap;
 
+import com.beetech.kayak.bus_event.CardRecognizeSuccessEvent;
+
+import org.greenrobot.eventbus.EventBus;
+
 import java.lang.ref.WeakReference;
+
+import jp.co.panasonic.pstc.ocr.card.CardRecog;
 
 
 /**
@@ -53,7 +59,8 @@ public class CameraProgress extends ProgressAsyncTask {
 				// OCR認識実行
 				ProcOcr prococr = new ProcOcr();
 				long sTime = System.currentTimeMillis();
-				ret = prococr.ocrConvert( bitmap, rb, wb, hb, res, callback);
+//				ret = prococr.ocrConvert( bitmap, rb, wb, hb, res, callback);
+				CardRecog getRecog = prococr.ocrConvert(bitmap,callback);
 				long eTime = System.currentTimeMillis();
 				cameraData.setProcTime(eTime - sTime);
 				result = true;
@@ -67,7 +74,10 @@ public class CameraProgress extends ProgressAsyncTask {
 				// OCR認識結果
 				if(result){
 					// OCR認識結果を取得
-					cameraData.setOcrResult(ret);
+//					cameraData.setOcrResult(ret);
+					cameraData.setRecog(getRecog);
+					//push event bus
+					EventBus.getDefault().postSticky(new CardRecognizeSuccessEvent(getRecog));
 				}
 			}
 		}

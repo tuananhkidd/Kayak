@@ -10,4 +10,13 @@
     <style name="AppTheme.WhiteAccent">
         <item name="colorAccent">@color/white</item> <!-- Whatever color you want-->
     </style>
+    <style name="TextCardVisitDetail">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:padding">@dimen/margin_10dp</item>
+    </style>
+    <style name="TextCardVisitTitle">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:padding">@dimen/margin_10dp</item>
+    </style>
 </resources>

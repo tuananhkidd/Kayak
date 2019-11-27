@@ -1,34 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".view.impl.HomeFragment"
-    >
+    tools:context=".view.impl.HomeFragment">
 
-    <ImageView
-        android:id="@+id/img_preview"
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/btn_select"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <com.beetech.kayak.custom.InformationTextView
+                android:id="@+id/tv_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:itv_title="Name:" />
+
+            <com.beetech.kayak.custom.InformationTextView
+                android:id="@+id/tv_company"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:itv_title="Company:" />
+
+            <com.beetech.kayak.custom.InformationTextView
+                android:id="@+id/tv_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:itv_title="Address:" />
+
+            <com.beetech.kayak.custom.InformationTextView
+                android:id="@+id/tv_phone_number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:itv_title="Phone Number:" />
+
+            <com.beetech.kayak.custom.InformationTextView
+                android:id="@+id/tv_fax"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:itv_title="FAX:" />
+
+            <com.beetech.kayak.custom.InformationTextView
+                android:id="@+id/tv_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:itv_title="Mail Address:" />
+
+            <com.beetech.kayak.custom.InformationTextView
+                android:id="@+id/tv_url"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:itv_title="Url:" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <ImageView
+        android:id="@+id/img_preview"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/btn_select"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btn_select"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Select Image"
+        android:text="Capture Image"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        />
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

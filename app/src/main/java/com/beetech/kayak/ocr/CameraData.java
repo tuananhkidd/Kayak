@@ -5,6 +5,8 @@ import android.util.Log;
 
 import java.nio.ByteBuffer;
 
+import jp.co.panasonic.pstc.ocr.card.CardRecog;
+
 /**
  * カメラデータクラス
  * 
@@ -29,7 +31,17 @@ public class CameraData {
 	
 	// 処理時間
 	private long procTime;
-	
+
+	private CardRecog recog;
+
+	public CardRecog getRecog() {
+		return recog;
+	}
+
+	public void setRecog(CardRecog recog) {
+		this.recog = recog;
+	}
+
 	/**
 	 * インスタンス取得処理<br />
 	 * @return	インスタンス(BusinessCardData型)
